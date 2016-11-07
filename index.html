@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products with a Factory</title>
+    <link rel="stylesheet" href="./Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./Skeleton-2.0.4/css/skeleton.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="products.js"></script>
+</head>
+<body>
+<div class="container" ng-controller="productController">
+    <fieldset><legend>Products Controller</legend>
+        <form ng-submit="create()">
+            <input type="text" placeholder="Product Name" ng-model="product.name">
+            <input type="text" placeholder="Product Price" ng-model="product.price">
+            <input type="submit" value="Add Product">
+        </form>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="product in products | orderBy: 'price' track by $index">
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price | currency: '$'}}</td>
+                <td><button ng-click="delete(product)">Delete Product</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+</body>
+</html>
